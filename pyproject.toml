@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keycloak-oauth-system"
+dynamic = ["version"]
+dependencies = [
+    "requests",
+    "pyqrcode"
+]
+requires-python = ">= 3.12"
+authors = [
+    {name = "Thomas Ward", email = "teward@thomas-ward.net"},
+]
+description = "Keycloak OAuth handler library that uses programmatic evaluation of callback URLs without the need for a callback server"
+license = "Apache-2.0"
+license-files = ["LICEN[CS]E*", "AUTHORS"]
+keywords = [
+    "oauth",
+    "oauth 2.0",
+    "keycloak"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: 3.16",
+    "Typing :: Typed"
+]
+
+[project.urls]
+Repository = "https://github.com/teward/KeycloakOAuth.git"
+
+[tool.setuptools.dynamic]
+version = {attr = "keycloak_oauth.__version__"}
