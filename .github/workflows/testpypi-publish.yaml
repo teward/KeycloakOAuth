@@ -10,6 +10,8 @@ jobs:
     name: Build and publish Python package to TestPyPI
     runs-on: ubuntu-latest
 
+    environment: testpypi
+
     # Required permissions for Trusted Publishing (OIDC)
     permissions:
       id-token: write
