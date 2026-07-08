@@ -32,7 +32,7 @@ class BaseAuthHandler:
             urljoin(self._auth_server, f'/realms/{self.realm}/.well-known/openid-configuration'),
         )
         if _oidc.status_code != 200:
-            raise RuntimeError("Could not get requisite information from NCFTA auth servers. "
+            raise RuntimeError("Could not get requisite information from specified auth server. "
                                "Double check the realm you specified.")
         ## We store the OpenID Configuration data here
         self._openid_config = _oidc.json()
