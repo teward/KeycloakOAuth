@@ -1,3 +1,7 @@
+"""
+Utility functions module
+"""
+
 import base64
 import time
 from datetime import datetime, timezone
@@ -11,7 +15,7 @@ from string import ascii_letters, digits
 def generate_random_string(length: int = 32) -> str:
     """
     Helper function used to generate random cryptographically-safe strings
-    :param length: (int) length of string to generate, defaults to 32
+    :param length: length of string to generate, defaults to 32
     :return: random string of letters and numbers of specified length.
     """
     return "".join(secrets.choice(ascii_letters + digits) for _ in range(length))
@@ -20,8 +24,8 @@ def generate_random_string(length: int = 32) -> str:
 def generate_pkce(length: int = 64) -> dict[str, str]:
     """
     Helper function that can generate PKCE parameters.
-    :param length:
-    :return:
+    :param length: length of random string to generate
+    :return: A dict containing the PKCE verifier and challenge items.
     """
     verifier = generate_random_string(length)
     challenge = base64.urlsafe_b64encode(
@@ -35,6 +39,12 @@ def generate_pkce(length: int = 64) -> dict[str, str]:
 
 
 def jwt_decode(jwt: str) -> dict:
+    """
+    Helper function that decodes Keycloak tokens (JWTs).
+
+    :param jwt: The JWT from Keycloak to decode
+    :return: A dict containing the decoded JWT data.
+    """
     _, payload, _ = jwt.split('.')
     data = payload + "=" * (4 - len(jwt) % 4)
     decoded = base64.b64decode(data).decode('utf-8')
@@ -42,6 +52,14 @@ def jwt_decode(jwt: str) -> dict:
 
 
 def token_is_valid(token: str) -> tuple[bool, str | None]:
+    """
+    Helper function that decodes a Keycloak token (JWT) and determines if
+    the token is (presumably) valid.
+
+    :param token: The token to decode.
+    :return: A tuple containing a boolean value (prepresenting token validity), and
+        detailed information about why the token may be valid or not.
+    """
     # noinspection PyBroadException
     try:
         jwt = jwt_decode(token)
@@ -55,6 +73,19 @@ def token_is_valid(token: str) -> tuple[bool, str | None]:
 
 
 def max_seconds(max_seconds: int, interval: int = 5):
+    """
+    Generator function that yields elapsed time in whole seconds, from 0 to max_seconds at
+    specified interval.
+
+    Used primarily by DeviceCodeFlow in order to handle repeated polling at specified intervals
+    by the Keycloak server
+
+    :param max_seconds: Maximum number of elapsed seconds before we simply stop generation.
+    :param interval: Number of seconds between generator yields, simply ends if we are beyond
+        max_seconds
+
+    :returns: A generator.
+    """
     start_time = time.time()
     end_time = start_time + max_seconds
     yield 0
