@@ -13,12 +13,12 @@ from util import jwt_decode, max_seconds
 class DeviceCodeFlow(BaseAuthHandler):
     """
     An authorization handler that handles the Device Code Flow for OAuth 2.0
-    requests to a Keycloak server. Inherits from the `BaseAuthHandler` class.
+    requests to a Keycloak server. Inherits from the :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
 
-    :param auth_server: Refer to `BaseAuthHandler` class.
-    :param realm: Refer to `BaseAuthHandler` class.
-    :param client_id: Refer to `BaseAuthHandler` class.
-    :param client_secret: Refer to `BaseAuthHandler` class.
+    :param auth_server: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param realm: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param client_id: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param client_secret: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
 
     :ivar _access_token: Internal class property to hold retrieved access token.
     :ivar _access_token_expiry: Internal class property to hold retrieved access token expiration.

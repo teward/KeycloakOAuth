@@ -14,12 +14,12 @@ from util import generate_pkce, jwt_decode
 class AuthCodeFlow(BaseAuthHandler):
     """
     An authorization handler that handles standard Authorization Code Flow OAuth 2.0
-    requests to a Keycloak server.  Inherits from the `BaseAuthHandler` class.
+    requests to a Keycloak server.  Inherits from the :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
 
-    :param auth_server: Refer to `BaseAuthHandler` class.
-    :param realm: Refer to `BaseAuthHandler` class.
-    :param client_id: Refer to `BaseAuthHandler` class.
-    :param client_secret: Refer to `BaseAuthHandler` class.
+    :param auth_server: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param realm: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param client_id: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
+    :param client_secret: Refer to :class:`BaseAuthHandler <keycloak_oauth._base.BaseAuthHandler` class.
 
     :param user_id: The username / User ID to authenticate with.
     :param user_password: The password to authenticate with.
