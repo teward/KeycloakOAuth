@@ -2,8 +2,8 @@ from datetime import datetime, timezone
 
 import pyqrcode
 
-from _base import BaseAuthHandler
-from util import jwt_decode, max_seconds
+from ._base import BaseAuthHandler
+from .util import jwt_decode, max_seconds
 
 
 class DeviceCodeFlow(BaseAuthHandler):

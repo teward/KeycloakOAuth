@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 
-from _base import BaseAuthHandler
-from util import jwt_decode
+from ._base import BaseAuthHandler
+from .util import jwt_decode
 
 
 class ClientCredentialsFlow(BaseAuthHandler):

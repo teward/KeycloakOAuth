@@ -3,8 +3,8 @@ import html
 import re
 from urllib.parse import urlparse, parse_qs
 
-from _base import BaseAuthHandler
-from util import generate_pkce, jwt_decode
+from ._base import BaseAuthHandler
+from .util import generate_pkce, jwt_decode
 
 
 class AuthCodeFlow(BaseAuthHandler):
