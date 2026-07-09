@@ -40,3 +40,17 @@ print(f"access_token_expiry: "
 print(f"\nrefresh_token:\n{oauth.refresh_token}")
 print(f"refresh_token_expiry: "
       f"{oauth.refresh_token_expiry.isoformat() if oauth.refresh_token_expiry else None}")
+
+# You can then construct Authorization headers with the token directly.
+headers = {
+    "Authorization": f"Bearer {oauth.access_token}"
+}
+# ... and then use it directly in a request, as an example here:
+import requests
+req_body = { "key": "value" }   # JSON request in Python dict form
+resp = requests.post("https://api.example.com/endpoint", headers=headers, json=req_body)
+# ... and then from the endpoint you'll simply access whatever data came back, in whatever format.
+# Assuming it's a REST API and a JSON reply, then...
+returned_data = resp.json()
+
+print(returned_data)
