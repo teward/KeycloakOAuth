@@ -2,7 +2,7 @@ from urllib.parse import parse_qs, urljoin
 
 import requests
 
-from util import generate_random_string
+from .util import generate_random_string
 
 
 # noinspection HttpUrlsUsage
