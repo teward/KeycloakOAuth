@@ -73,6 +73,8 @@ class ClientCredentialsFlow(BaseAuthHandler):
         return self._refresh_token_expiry
 
     def get_tokens(self) -> dict:
+        self._clean_session()
+
         data = dict(self._auth_parameters)
         token_request = self._session.post(
             self.token_endpoint, data=data, allow_redirects=False
@@ -130,4 +132,6 @@ class ClientCredentialsFlow(BaseAuthHandler):
 
     # noinspection PyTypeChecker
     def refresh_access_token(self):
+        self._clean_session()
+
         return self._refresh_access_token(self.refresh_token)

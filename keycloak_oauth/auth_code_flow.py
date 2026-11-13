@@ -204,6 +204,8 @@ class AuthCodeFlow(BaseAuthHandler):
         return refresh_req.json()
 
     def run_auth_flow(self) -> dict:
+        self._clean_session()  # Clean up existing Session, reset it.
+
         auth_code = self.get_authorization_code()
         tokens = self.get_tokens_from_code(auth_code)
 
@@ -211,4 +213,7 @@ class AuthCodeFlow(BaseAuthHandler):
 
     # noinspection PyTypeChecker
     def run_refresh_flow(self) -> dict:
+        # Clean up existing session so there are no cookies that would break things left.
+        self._clean_session()
+
         return self.refresh_access_token(self.refresh_token)

@@ -36,6 +36,8 @@ class DeviceCodeFlow(BaseAuthHandler):
         return req.json()
 
     def authenticate(self) -> dict:
+        self._clean_session()
+
         print("To finish authentication, please scan the QR code (or use the link)")
         print("and the specified device code to complete login on the next screen.\n")
         input("Press Enter to generate the QR code, URL, and device code.")

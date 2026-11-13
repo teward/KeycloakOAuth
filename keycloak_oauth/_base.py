@@ -1,6 +1,7 @@
 from urllib.parse import parse_qs, urljoin
 
 import requests
+from requests import Session
 
 from .util import generate_random_string
 
@@ -42,6 +43,13 @@ class BaseAuthHandler:
 
         ## State is not used in every type of request, but it doesn't hurt to generate.
         self._state = generate_random_string(32)
+
+    def _clean_session(self):
+        # Used to reset the session to 'clean' - Keycloak related cookies don't like persisting.
+        # So, we need a base helper function elsewhere for subclasses that inherit this one
+        # to allow easy reset of the session BEFORE reinitializing an auth flow.
+        del self._session
+        self._session = requests.Session()
 
     @property
     def realm(self) -> str:
